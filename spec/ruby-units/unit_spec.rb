@@ -1579,6 +1579,11 @@ describe "Unit Comparisons" do
       specify { expect(RubyUnits::Unit.new("1 m")).not_to be_same_as RubyUnits::Unit.new("2 m") }
     end
 
+    context "base scalars should be equivalent" do
+      specify { expect(RubyUnits::Unit.new("1 kg").hash).to be === RubyUnits::Unit.new("1000 g").hash}
+      specify { expect(RubyUnits::Unit.new("1 kg").hash).not_to be === RubyUnits::Unit.new("1000 ml").hash}
+    end
+
     specify { expect(RubyUnits::Unit.new("1 m")).not_to be === nil }
   end
 

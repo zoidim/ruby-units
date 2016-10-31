@@ -589,6 +589,13 @@ module RubyUnits
       end
     end
 
+    # Override the hash method for return same hash on equivalent objects.
+    # Hash is used as key on Collections.
+    # Example: Unit.new("12 kg").hash == Unit.new("12000 g").hash
+    def hash
+      self.base_scalar.hash
+    end
+
     # Compare Units for equality
     # this is necessary mostly for Complex units.  Complex units do not have a <=> operator
     # so we define this one here so that we can properly check complex units for equality.
